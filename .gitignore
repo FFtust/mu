@@ -1,0 +1,7 @@
+# project directory
+######################
+__pycache__
+build
+dist
+dist.rar
+__main__.spec

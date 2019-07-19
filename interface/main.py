@@ -360,16 +360,16 @@ class Window(QMainWindow):
         self.serial = QSerialPort()
         self.serial.setPortName(port)
         if self.serial.open(QIODevice.ReadWrite):
-            self.serial.setDataTerminalReady(True)
-            if not self.serial.isDataTerminalReady():
-                # Using pyserial as a 'hack' to open the port and set DTR
-                # as QtSerial does not seem to work on some Windows :(
-                # See issues #281 and #302 for details.
-                self.serial.close()
-                pyser = serial.Serial(port)  # open serial port w/pyserial
-                pyser.dtr = True
-                pyser.close()
-                self.serial.open(QIODevice.ReadWrite)
+            # self.serial.setDataTerminalReady(True)
+            # if not self.serial.isDataTerminalReady():
+            #     # Using pyserial as a 'hack' to open the port and set DTR
+            #     # as QtSerial does not seem to work on some Windows :(
+            #     # See issues #281 and #302 for details.
+            #     self.serial.close()
+            #     pyser = serial.Serial(port)  # open serial port w/pyserial
+            #     pyser.dtr = True
+            #     pyser.close()
+            #     self.serial.open(QIODevice.ReadWrite)
             self.serial.setBaudRate(115200)
             self.serial.readyRead.connect(self.on_serial_read)
         else:
